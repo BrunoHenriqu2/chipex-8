@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Science+Gothic:wght@100..900&family=Sekuya&display=swap');
+
+:root {
+    --primary-color: #180214;
+    --secondary-color: #5aeb21;
+    --black: #040018;
+    --white: #eeeeee;
+    --grey: #333833;
+}
+
+body {
+    font-family: "google sans flex";
+    background: linear-gradient(-90deg, var(--primary-color), var(--black));
+    min-height: 100dvh;
+    color: var(--secondary-color);
+    background-size: 400%;
+    animation: grad 10s ease infinite;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+h1 {
+    font-family: "science gothic";
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: var(--secondary-color);
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+button {
+    border: none;
+    cursor: pointer;
+}
+
+#chipex-nav {
+    position: fixed;
+
+    & div {
+        box-shadow: inset 0 0 0 1px var(--grey);
+
+        & button {
+            background: none;
+            
+            &:hover {
+                background-color: var(--grey);
+            }
+        }
+
+        & ul {
+            padding: 0;
+            margin: 5px;
+            left: -5px;
+
+            & li {
+                list-style-type: none;
+
+                & a {
+                    height: 2.5rem;
+                    display: flex;
+                    align-items: center;
+                    gap: .5rem;
+                    text-decoration: none;
+
+                    &:hover {
+                        background-color: var(--grey);
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .3rem;
+}
+
+@keyframes grad {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
