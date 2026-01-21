@@ -10,12 +10,19 @@ await domReady()
 
 const dom = {
     ui: {
-        navButton: document.querySelector("#chipex-nav-button")
+        chipexNav: document.querySelector("#chipex-nav"),
+        chipexNavButton: document.querySelector("#chipex-nav-button")
     },
 
     actions () {
-        this.ui.navButton.addEventListener("click", () => {
+        this.ui.chipexNavButton.addEventListener("click", () => {
+            if (!this.ui.chipexNav.classList.contains("chipex-nav-opened")) {
+                this.ui.chipexNav.classList.add("chipex-nav-opened")
+                
+                return
+            }
 
+            this.ui.chipexNav.classList.remove("chipex-nav-opened")
         })
     },
 
@@ -27,3 +34,5 @@ const dom = {
 
     }
 }
+
+dom.init()
