@@ -1,0 +1,28 @@
+{
+  "name": "chipex-8",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "server/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BrunoHenriqu2/chipex-8.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/BrunoHenriqu2/chipex-8/issues"
+  },
+  "homepage": "https://github.com/BrunoHenriqu2/chipex-8#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.10",
+    "typescript": "^5.9.3"
+  }
+}

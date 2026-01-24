@@ -5,7 +5,11 @@
     --secondary-color: #5aeb21;
     --black: #040018;
     --white: #eeeeee;
-    --grey: #333833;
+    --grey: #303330;
+    --blue: #14075c;
+    --default-transition-time: .2s;
+    --default-transition-anim: ease;
+    --default-transition: all .2s;
 }
 
 body {
@@ -38,8 +42,11 @@ a {
 }
 
 button {
+    padding: 0;
     border: none;
     cursor: pointer;
+    min-width: 1rem;
+    min-height: 1rem;
 }
 
 input {
@@ -51,17 +58,27 @@ input {
     padding: .6rem;
     background-color: var(--grey);
     color: var(--white);
-
-    &:hover {
-
-    }
 }
 
 #chipex-nav {
+    z-index: 9999;
     position: fixed;
+    top: 1.2rem;
+    left: 1.2rem;
+
+    & .chipex-nav-scope {
+        /* width: 30px; */
+    }
+
+    & .chipex-nav-items {
+        position: absolute;
+        left: -100px;
+    }
 
     & div {
+        background-color: var(--blue);
         box-shadow: inset 0 0 0 1px var(--grey);
+        border-radius: 1rem;
 
         & button {
             background: none;
@@ -73,24 +90,29 @@ input {
 
         & ul {
             padding: 0;
-            margin: 5px;
-            left: -5px;
+            margin: .3rem;
 
             & li {
                 list-style-type: none;
 
                 & a {
-                    height: 2.5rem;
+                    padding: 0 .5rem 0 .5rem;
+                    position: relative;
+                    min-width: 42px;
+                    min-height: 42px;
+                    height: 3rem;
                     display: flex;
                     align-items: center;
                     gap: .5rem;
                     text-decoration: none;
+                    border-radius: 2rem;
 
                     &:hover {
                         background-color: var(--grey);
                     }
 
                     & .li-icon {
+                        position: relative;
                         width: 30px;
                         height: 30px;
                     }
@@ -101,10 +123,27 @@ input {
 
 }
 
+#chipex-nav-button {
+    border-radius: 2rem;
+    padding: .4rem;
+}
+
 .chipex-nav-opened {
-    & div ul {
-        & li .li-text {
-            display: none;
+    & .chipex-nav-items {
+        left: 0;
+
+        & ul {
+            & li {
+
+                & a {
+                    display: flex;
+                    justify-content: center;
+                }
+
+                & .li-text {
+                    display: none;
+                }
+            }
         }
     }
 }
@@ -114,6 +153,22 @@ input {
     justify-content: center;
     align-items: center;
     gap: .3rem;
+}
+
+.inline-flex {
+    display: inline-flex;
+}
+
+.margin-1 {
+    margin: 1rem;
+}
+
+.s-color-filter {
+    filter: brightness(0) saturate(100%) invert(73%) sepia(70%) saturate(1802%) hue-rotate(53deg) brightness(106%) contrast(88%);
+}
+
+.blur {
+    filter: blur(0);
 }
 
 @keyframes grad {
