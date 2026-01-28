@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/public/css/style.css">
-    <link rel="stylesheet" href="/public/css/index.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/index.css">
     <title>Chipex-8</title>
 </head>
 
@@ -16,18 +16,18 @@
             <nav id="chipex-nav" class="chipex-nav-opened">
                 <div class="chipex-nav-scope">
                     <button id="chipex-nav-button">
-                        <img src="/public/img/nav.svg" class="s-color-filter" alt="nav" height="26" width="26">
+                        <img src="/img/nav.svg" class="s-color-filter" alt="nav" height="26" width="26">
                     </button>
                 </div>
                 <div class="chipex-nav-items">
                     <ul>
                         <li id="games-li" class="li-selected"><a href="index.html">
                                 <span class="li-text">Games</span>
-                                <img src="/public/img/controller.svg" alt="" class="li-icon s-color-filter">
+                                <img src="/img/controller.svg" alt="" class="li-icon s-color-filter">
                             </a></li>
                         <li id="config-li"><a href="config.html">
                                 <span class="li-text">Configurations</span>
-                                <img src="/public/img/gear.svg" alt="" class="li-icon s-color-filter">
+                                <img src="/img/gear.svg" alt="" class="li-icon s-color-filter">
                             </a></li>
                         <li id="credits-li"><a href="credits.html">
                                 <span class="li-text">Credits</span>
@@ -42,14 +42,25 @@
         <article>
             <section id="search" class="center margin-1">
                 <label id="search-bar" for="search-input" class="center">
-                    <img src="/public/img/magnifier.svg" width="20" height="20">
-                    <input type="text" name="" id="search-input" placeholder="search for games">
+                    <img src="/img/magnifier.svg" width="20" height="20">
+                    <input type="text" name="" id="search-input" placeholder="Search for games">
                 </label>
             </section>
             <section id="games" class="center margin-1">
                 <div class="game">
+                    <button style="border-style: dotted;">
+                        <details>
+                            <summary>Load your own Rom</summary>
+                         </details>
+                        <figcaption>Custom</figcaption>
+                    </button>
+                </div>
+                <div class="game">
                     <button style="background-image: url('/chip-8/img/FlightRunner.png');">
                         <!-- <img src="/src/games-img/FlightRunner.png" alt=""> -->
+                         <details>
+                            <summary>A simple Flight Runner</summary>
+                         </details>
                         <figcaption>Flight Runner</figcaption>
                     </button>
                 </div>
@@ -61,7 +72,7 @@
                 src="https://res.cloudinary.com/dxyktq9kw/image/upload/v1751423666/BH2-4-white-mini_jbymz1.svg"
                 alt="bh2-logo"></span>
     </footer>
-    <script type="module" src="/public/js/index.js"></script>
+    <script type="module" src="/js/index.js"></script>
 </body>
 
 </html>
