@@ -1,38 +1,44 @@
-async function domReady () {
-    return new Promise(resolve => {
-        document.addEventListener("DOMContentLoaded", () => {
-            resolve(true)
-        })
-    })
-}
-
-await domReady()
-
 const dom = {
-    ui: {
+    _ui: {
         chipexNav: document.querySelector("#chipex-nav"),
-        chipexNavButton: document.querySelector("#chipex-nav-button")
+        chipexNavButton: document.querySelector("#chipex-nav-button"),
+        customRom: document.querySelector("#custom-rom")
     },
 
-    actions () {
-        this.ui.chipexNavButton.addEventListener("click", () => {
-            if (!this.ui.chipexNav.classList.contains("chipex-nav-opened")) {
-                this.ui.chipexNav.classList.add("chipex-nav-opened")
-                
+    _events() {
+        this._ui.chipexNavButton.addEventListener("click", () => {
+            if (!this._ui.chipexNav.classList.contains("chipex-nav-opened")) {
+                this._ui.chipexNav.classList.add("chipex-nav-opened")
+
                 return
             }
 
-            this.ui.chipexNav.classList.remove("chipex-nav-opened")
+            this._ui.chipexNav.classList.remove("chipex-nav-opened")
+        })
+    },
+
+    _actions() {
+        fetch("/games").then(arr => {
+
         })
     },
 
     init() {
-        this.actions()
+        this._events()
+        this._actions()
     },
 
     abort() {
 
+    },
+
+    ready() {
+        return new Promise(resolve => {
+            document.addEventListener("DOMContentLoaded", () => {
+                resolve(true)
+            }, {once: true})
+        })
     }
 }
 
-dom.init()
+dom.ready().then(dom.init())

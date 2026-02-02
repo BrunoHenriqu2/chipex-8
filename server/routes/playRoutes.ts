@@ -4,5 +4,5 @@ import { playGame } from "../controllers/playController.js"
 
 export default function (app: expressApp) {
     app.use(express.json())
-    app.get("/play:id", playGame)
+    app.get("/play/:id", playGame)
 }
