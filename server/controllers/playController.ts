@@ -13,14 +13,14 @@ export async function playGame(req: expressReq, res: expressRes) {
         //if (!rom) { throw new Error("No rom received!") }
         if (!rom) {
             res.redirect(301, "/" + stringQuery(
-                { reason: "no_rom_received", status: false }
+                { rejectionReason: "no_rom_received" }
             ))
         }
 
         res.status(200).sendFile(path.join(path.dirname(__dirname), "views", "play.html"))
     } catch (msg) {
-        console.log(msg)
-        console.log(typeof msg)
+        // console.log(msg)
+        // console.log(typeof msg)
         res.status(400).json(String(msg))
     }
 }

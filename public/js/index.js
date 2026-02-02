@@ -18,9 +18,17 @@ const dom = {
     },
 
     _actions() {
-        fetch("/games").then(arr => {
+        const loadGames = () => {
+            const customRomDiv = document.querySelector("#custom-rom")
+            fetch("/games").then(data => {
+                const json = await data.json()
 
-        })
+                const newRom = customRomDiv.cloneNode()
+                newRom.id = json.name
+            })
+        }
+
+        loadGames()
     },
 
     init() {
@@ -36,7 +44,7 @@ const dom = {
         return new Promise(resolve => {
             document.addEventListener("DOMContentLoaded", () => {
                 resolve(true)
-            }, {once: true})
+            }, { once: true })
         })
     }
 }

@@ -15,7 +15,7 @@ function render(canvas: HTMLCanvasElement) {
     }
 
     const ctx = canvas.getContext("2d")
-    if (!ctx) { return }
+    if (!ctx) { return messages.noCanvasCtx }
 
     ctx.fillStyle = "black"
     ctx.fillRect(0, 0, canvas.width, canvas.height)
@@ -31,3 +31,18 @@ function render(canvas: HTMLCanvasElement) {
         }
     }
 }
+
+function loop(canvas: HTMLCanvasElement) {
+    for (let i = 0; i < 10; i++) {
+        chip8.cycle()
+    }
+
+    if (chip8.drawFlag) {
+        render(canvas)
+        chip8.drawFlag = false
+    }
+
+    requestAnimationFrame(loop)
+}
+
+loadRom("./roms/ibm.ch8").then(() => loop())

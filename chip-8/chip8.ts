@@ -42,7 +42,7 @@ export class Chip8 {
 
     cycle() {
         const opcode = (this.memory[this.pc] << 8) | this.memory[this.pc + 1]
-        
+
         this.pc += 2
 
         this.execute(opcode)
@@ -52,6 +52,11 @@ export class Chip8 {
     }
 
     execute(opcode) {
-        
+        switch opcode {
+            case 0x00E0: // CLS
+                this.display.fill(0)
+                this.drawFlag = true
+                break
+        }
     }
 }

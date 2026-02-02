@@ -5,4 +5,5 @@ const log = function(message: string) {
 
 export default {
     noCanvas: log("No canvas detected!"),
+    noCanvasCtx: log("No canvas ctx (2d) detected!")
 }
