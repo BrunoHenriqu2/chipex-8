@@ -1,3 +1,5 @@
+import * as safeOperation from "./library/safeOperation.js"
+
 const dom = {
     _ui: {
         chipexNav: document.querySelector("#chipex-nav"),
@@ -20,12 +22,19 @@ const dom = {
     _actions() {
         const loadGames = () => {
             const customRomDiv = document.querySelector("#custom-rom")
-            fetch("/games").then(data => {
-                const json = await data.json()
-
-                const newRom = customRomDiv.cloneNode()
-                newRom.id = json.name
+            const { sucess, result } = safeOperation.pcall(() => {
+                throw new Error("teste")
             })
+            console.log(sucess, result)
+            safeOperation.retry(async () => {
+                const res = await fetch("/games.jsona")
+
+                if (!res.ok) {
+                    throw new Error(`HTTP Error: ${res.status}`)
+                }
+                const gamesJson = res.json()
+                console.log(gamesJson)
+            }, 5)
         }
 
         loadGames()
