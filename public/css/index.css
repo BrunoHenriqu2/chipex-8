@@ -11,13 +11,12 @@
     }
 }
 
-#games {
-    & div:not(.game) {
-        display: flex;
-        justify-content: left;
-        flex-wrap: wrap;
-        max-width: 80dvw;
-    }
+#games-library {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 18rem);
+    gap: .2rem;
+    justify-content: center;
+    max-width: 80dvw;
 }
 
 .game {
@@ -87,15 +86,23 @@
     }
 }
 
+.game-hidden {
+    display: none;
+}
+
 @media (max-width: 880px) {
-    #games {
-        
-    }
+    #games {}
 }
 
 @keyframes gameGrowUp {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
     100% {
         height: 10rem;
         width: 18rem;
+        opacity: 1;
     }
 }

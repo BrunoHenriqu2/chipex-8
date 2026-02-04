@@ -4,6 +4,8 @@ const dom = {
     _ui: {
         chipexNav: document.querySelector("#chipex-nav"),
         chipexNavButton: document.querySelector("#chipex-nav-button"),
+        searchBar: document.querySelector("#search-bar"),
+        searchInput: document.querySelector("#search-input"),
         games: document.querySelector("#games"),
         gamesLibrary: document.querySelector("#games-library"),
         customRom: document.querySelector("#custom-rom")
@@ -19,14 +21,28 @@ const dom = {
 
             this._ui.chipexNav.classList.remove("chipex-nav-opened")
         })
+        this._ui.searchInput.addEventListener("input", (e) => {
+            const currentValue = this._ui.searchInput.value
+            const gameNodes = Array.from(this._ui.gamesLibrary.children)
+            //console.log(gameNodes)
+
+            //if (currentValue === "") {
+                gameNodes.forEach(node => {
+                    node.classList.remove("game-hidden")
+                })
+                //return
+            //}
+            
+            gameNodes.forEach(node => {
+                if (node.id !== "custom-rom" && !node.innerHTML.toLowerCase().includes(currentValue.toLowerCase())) {
+                    node.classList.add("game-hidden")
+                }
+            })
+        })
     },
 
     _actions() {
         const loadGames = () => {
-            // const { sucess, result } = safeOperation.pcall(() => {
-            //     throw new Error("teste")
-            // })
-            // console.log(sucess, result)
             safeOperation.retry(async () => {
                 const res = await fetch("/games.json")
                 
@@ -59,7 +75,12 @@ const dom = {
             }, 5)
         }
 
+        const loadSearch = () => {
+
+        }
+
         loadGames()
+        loadSearch()
     },
 
     init() {

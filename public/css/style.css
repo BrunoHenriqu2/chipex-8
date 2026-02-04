@@ -18,7 +18,7 @@ body {
     min-height: 100dvh;
     color: var(--secondary-color);
     background-size: 400%;
-    animation: grad 10s ease infinite;
+    /* animation: grad 10s ease infinite; */
 }
 
 footer {

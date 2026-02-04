@@ -12,7 +12,7 @@
     },
     {
         "name": "Ibm",
-        "description": "A rom for testing",
+        "description": "A rom for testing/debug",
         "preview": "/img/gamePreview/Flightrunner.png",
         "keys": [
             "5",
