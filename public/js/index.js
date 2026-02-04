@@ -4,6 +4,8 @@ const dom = {
     _ui: {
         chipexNav: document.querySelector("#chipex-nav"),
         chipexNavButton: document.querySelector("#chipex-nav-button"),
+        games: document.querySelector("#games"),
+        gamesLibrary: document.querySelector("#games-library"),
         customRom: document.querySelector("#custom-rom")
     },
 
@@ -21,19 +23,39 @@ const dom = {
 
     _actions() {
         const loadGames = () => {
-            const customRomDiv = document.querySelector("#custom-rom")
-            const { sucess, result } = safeOperation.pcall(() => {
-                throw new Error("teste")
-            })
-            console.log(sucess, result)
+            // const { sucess, result } = safeOperation.pcall(() => {
+            //     throw new Error("teste")
+            // })
+            // console.log(sucess, result)
             safeOperation.retry(async () => {
-                const res = await fetch("/games.jsona")
-
+                const res = await fetch("/games.json")
+                
                 if (!res.ok) {
-                    throw new Error(`HTTP Error: ${res.status}`)
+                    throw new Error(`HTTP Response: ${res.status}`)
                 }
-                const gamesJson = res.json()
+
+                const gamesJson = await res.json()
                 console.log(gamesJson)
+
+                gamesJson.forEach(game => {
+                    const newRom = this._ui.customRom.cloneNode(true)
+                    newRom.id = game.name
+                    
+                    const newRomButton = newRom.querySelector("button")
+                    newRomButton.title = game.name
+                    //newRomButton.style.backgroundImage = `url(${game.preview})`
+
+                    const newRomImg = newRom.querySelector("img")
+                    newRomImg.src = game.preview
+
+                    const newRomSummary = newRomButton.querySelector("summary")
+                    newRomSummary.innerText = game.description
+
+                    const newRomFigCaption = newRomButton.querySelector("figcaption")
+                    newRomFigCaption.innerText = game.name
+
+                    this._ui.gamesLibrary.appendChild(newRom)
+                })
             }, 5)
         }
 

@@ -1,11 +1,11 @@
-export function pcall(f) {
+export async function pcall(f) {
     if (typeof f !== "function") { return console.log("\"f\" must be valid!") }
 
     let sucess, result = undefined
 
     try {
         sucess = true
-        result = f()
+        result = await f()
     } catch (err) {
         sucess = false
         result = err
@@ -19,13 +19,15 @@ export async function retry(f, times) {
 
     if (typeof f !== "function") { return console.log("\"f\" must be valid!") }
 
-    let { sucess, result } = pcall(await f)
+    let { sucess, result } = await pcall(f)
 
     if (!sucess) {
+        console.log(sucess, result)
+        
         for (let attempts = 0; attempts < _times; attempts++) {
-            if (sucess) { break }
+            if (sucess) { break }        
             console.log(`Trying more ${_times - attempts} times`)
-            sucess, result = pcall(await f)
+            sucess, result = await pcall(f)
         }
     }
 

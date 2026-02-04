@@ -72,14 +72,14 @@ input {
 
     & .chipex-nav-items {
         transition: var(--default-transition);
-        background-color: var(--blue);
+        /* background-color: var(--blue); */
+        box-shadow: inset 0 0 0 1px var(--grey);
         position: absolute;
         left: -100px;
     }
 
     & div {
-        /* background-color: var(--blue);
-        box-shadow: inset 0 0 0 1px var(--grey); */
+        /* background-color: var(--blue); */
         border-radius: 1rem;
 
         & button {

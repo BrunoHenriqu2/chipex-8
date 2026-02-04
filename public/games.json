@@ -2,6 +2,40 @@
     {
         "name": "Flightrunner",
         "description": "A simple flight runner",
+        "preview": "/img/gamePreview/Flightrunner.png",
+        "keys": [
+            "5",
+            "7",
+            "8",
+            "9"
+        ]
+    },
+    {
+        "name": "Ibm",
+        "description": "A rom for testing",
+        "preview": "/img/gamePreview/Flightrunner.png",
+        "keys": [
+            "5",
+            "7",
+            "8",
+            "9"
+        ]
+    },
+    {
+        "name": "Cave",
+        "description": "A simple flight runner",
+        "preview": "/img/gamePreview/Flightrunner.png",
+        "keys": [
+            "5",
+            "7",
+            "8",
+            "9"
+        ]
+    },
+    {
+        "name": "C8pic",
+        "description": "A simple flight runner",
+        "preview": "/img/gamePreview/Flightrunner.png",
         "keys": [
             "5",
             "7",
