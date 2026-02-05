@@ -1,4 +1,14 @@
-import * as safeOperation from "./library/safeOperation.js"
+import * as safeOperation from "../shared/safeOperation.js"
+
+const gamesJson = await safeOperation.retry(async () => {
+    const res = await fetch("/games.json")
+
+    if (!res.ok) {
+        throw new Error(`HTTP Response: ${res.status}`)
+    }
+
+    return await res.json()
+}, 5)
 
 const dom = {
     _ui: {
@@ -27,12 +37,12 @@ const dom = {
             //console.log(gameNodes)
 
             //if (currentValue === "") {
-                gameNodes.forEach(node => {
-                    node.classList.remove("game-hidden")
-                })
-                //return
+            gameNodes.forEach(node => {
+                node.classList.remove("game-hidden")
+            })
+            //return
             //}
-            
+
             gameNodes.forEach(node => {
                 if (node.id !== "custom-rom" && !node.innerHTML.toLowerCase().includes(currentValue.toLowerCase())) {
                     node.classList.add("game-hidden")
@@ -43,36 +53,28 @@ const dom = {
 
     _actions() {
         const loadGames = () => {
-            safeOperation.retry(async () => {
-                const res = await fetch("/games.json")
-                
-                if (!res.ok) {
-                    throw new Error(`HTTP Response: ${res.status}`)
-                }
+            gamesJson.forEach(game => {
+                const newRom = this._ui.customRom.cloneNode(true)
+                newRom.id = game.name
 
-                const gamesJson = await res.json()
-                console.log(gamesJson)
-
-                gamesJson.forEach(game => {
-                    const newRom = this._ui.customRom.cloneNode(true)
-                    newRom.id = game.name
-                    
-                    const newRomButton = newRom.querySelector("button")
-                    newRomButton.title = game.name
-                    //newRomButton.style.backgroundImage = `url(${game.preview})`
-
-                    const newRomImg = newRom.querySelector("img")
-                    newRomImg.src = game.preview
-
-                    const newRomSummary = newRomButton.querySelector("summary")
-                    newRomSummary.innerText = game.description
-
-                    const newRomFigCaption = newRomButton.querySelector("figcaption")
-                    newRomFigCaption.innerText = game.name
-
-                    this._ui.gamesLibrary.appendChild(newRom)
+                const newRomButton = newRom.querySelector("button")
+                newRomButton.title = game.name
+                //newRomButton.style.backgroundImage = `url(${game.preview})`
+                newRomButton.addEventListener("click", () => {
+                    window.location.href = `/play/${game.name}`
                 })
-            }, 5)
+
+                const newRomImg = newRom.querySelector("img")
+                newRomImg.src = game.preview
+
+                const newRomSummary = newRomButton.querySelector("summary")
+                newRomSummary.innerText = game.description
+
+                const newRomFigCaption = newRomButton.querySelector("figcaption")
+                newRomFigCaption.innerText = game.name
+
+                this._ui.gamesLibrary.appendChild(newRom)
+            })
         }
 
         const loadSearch = () => {

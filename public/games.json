@@ -3,6 +3,7 @@
         "name": "Flightrunner",
         "description": "A simple flight runner",
         "preview": "/img/gamePreview/Flightrunner.png",
+        "rom": "/roms/Flightrunner.ch8",
         "keys": [
             "5",
             "7",

@@ -1,3 +1,5 @@
+// Liked this script? Well, fell free to use it! No judgement. //
+
 export async function pcall(f) {
     if (typeof f !== "function") { return console.log("\"f\" must be valid!") }
 

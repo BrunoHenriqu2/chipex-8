@@ -7,13 +7,19 @@ const __dirname = import.meta.dirname
 export async function playGame(req: expressReq, res: expressRes) {
     try {
         const id = req.params.id ?? undefined
-        const rom = req.body?.rom ?? undefined
-
+        let rom
         //console.log(id, rom)
-        //if (!rom) { throw new Error("No rom received!") }
-        if (!rom) {
-            res.redirect(301, "/" + stringQuery(
-                { rejectionReason: "no_rom_received" }
+        
+        try {
+            const res = await fetch(`/roms/${id}.ch8`)
+            if (!res.ok) {
+                throw new Error("No rom found!") 
+            }
+            rom = await res.arrayBuffer()
+        } catch (err) {
+            console.log(err)
+            return res.redirect(301, "/" + stringQuery(
+                { rejectionReason: "no_rom_found" }
             ))
         }
 
